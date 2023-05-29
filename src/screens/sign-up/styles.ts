@@ -10,14 +10,20 @@ export const styles = StyleSheet.create({
     backgroundColor: '#fff'
   },
 
-  inputTextStyle: {
+  textInput: {
     width: '100%',
     marginBottom: 15
   },
 
-  loginTexto: {
+  signText: {
     color: '#3740FE',
     marginTop: 25,
     textAlign: 'center'
+  },
+
+  loadingContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 });

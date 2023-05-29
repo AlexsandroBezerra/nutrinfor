@@ -13,7 +13,7 @@ import { firebaseAppAuth } from '../../firebase';
 
 import { styles } from './styles'
 
-export function SignInPage({ navigation }) {
+export function SignInScreen({ navigation }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -25,7 +25,6 @@ export function SignInPage({ navigation }) {
       try {
         setIsLoading(true);
         await signInWithEmailAndPassword(firebaseAppAuth, email, password)
-        // navigation.navigate('Home')
       } finally {
         setIsLoading(false);
       }
@@ -34,7 +33,7 @@ export function SignInPage({ navigation }) {
 
   if (isLoading) {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={styles.loadingContainer}>
         <ActivityIndicator size="large" color="#9E9E9E" />
       </View>
     );
@@ -43,7 +42,7 @@ export function SignInPage({ navigation }) {
   return (
     <View style={styles.container}>
       <TextInput
-        style={styles.inputTextStyle}
+        style={styles.textInput}
         placeholder="Email"
         value={email}
         onChangeText={(text) => setEmail(text)}
@@ -53,7 +52,7 @@ export function SignInPage({ navigation }) {
       />
 
       <TextInput
-        style={styles.inputTextStyle}
+        style={styles.textInput}
         placeholder="Password"
         value={password}
         onChangeText={(text) => setPassword(text)}
@@ -70,7 +69,7 @@ export function SignInPage({ navigation }) {
         onPress={signIn}
       />
 
-      <Text style={styles.loginTexto}
+      <Text style={styles.signText}
         onPress={() => navigation.navigate('SignUp')}>
         Não tem conta? Clique aqui para cadastrar!
       </Text>

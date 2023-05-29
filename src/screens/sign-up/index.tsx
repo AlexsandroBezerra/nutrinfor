@@ -13,7 +13,7 @@ import { firebaseAppAuth } from '../../firebase'
 
 import { styles } from './styles'
 
-export function SignUpPage({ navigation }) {
+export function SignUpScreen({ navigation }) {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -36,7 +36,7 @@ export function SignUpPage({ navigation }) {
 
   if (isLoading) {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={styles.loadingContainer}>
         <ActivityIndicator size="large" color="#9E9E9E" />
       </View>
     )
@@ -45,7 +45,7 @@ export function SignUpPage({ navigation }) {
   return (
     <View style={styles.container}>
       <TextInput
-        style={styles.inputTextStyle}
+        style={styles.textInput}
         placeholder="Nome Completo"
         value={name}
         onChangeText={(text) => setName(text)}
@@ -54,7 +54,7 @@ export function SignUpPage({ navigation }) {
       />
 
       <TextInput
-        style={styles.inputTextStyle}
+        style={styles.textInput}
         placeholder="Email"
         value={email}
         onChangeText={(text) => setEmail(text)}
@@ -64,7 +64,7 @@ export function SignUpPage({ navigation }) {
       />
 
       <TextInput
-        style={styles.inputTextStyle}
+        style={styles.textInput}
         placeholder="Password"
         value={password}
         onChangeText={(text) => setPassword(text)}
@@ -81,7 +81,7 @@ export function SignUpPage({ navigation }) {
         onPress={signUp}
       />
 
-      <Text style={styles.loginTexto}
+      <Text style={styles.signText}
         onPress={() => navigation.navigate('Login')}>
         Já está cadastrado? Clique aqui para fazer login!
       </Text>
