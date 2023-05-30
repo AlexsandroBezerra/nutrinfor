@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
+import { updateProfile } from 'firebase/auth'
 import {
   View,
   Text,
@@ -9,9 +9,8 @@ import {
   ActivityIndicator
 } from 'react-native'
 
-import { firebaseAppAuth } from '../../firebase'
-
 import { styles } from './styles'
+import { FirebaseService } from '../../services/firebase'
 
 export function SignUpScreen({ navigation }) {
   const [name, setName] = useState('')
@@ -25,10 +24,11 @@ export function SignUpScreen({ navigation }) {
     } else {
       try {
         setIsLoading(true);
-        const response = await createUserWithEmailAndPassword(firebaseAppAuth, email, password)
-        await updateProfile(response.user, { displayName: name })
-        navigation.navigate('SignIn')
-      } finally {
+        await FirebaseService.signUp(name, email, password)
+        setIsLoading(false);
+        navigation.navigate('SignIn');
+      } catch (e) {
+        console.error(e);
         setIsLoading(false);
       }
     }

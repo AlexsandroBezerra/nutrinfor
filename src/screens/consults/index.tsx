@@ -3,10 +3,10 @@ import { Text, View } from 'react-native';
 
 import { styles } from './styles';
 
-export function HomeScreen() {
+export function ConsultsScreen() {
   return (
     <View style={styles.container}>
-      <Text>Refeições</Text>
+      <Text>Consulta</Text>
       <StatusBar style="auto" />
     </View>
   );

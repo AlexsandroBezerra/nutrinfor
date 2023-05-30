@@ -7,9 +7,8 @@ import {
   TextInput,
   ActivityIndicator
 } from 'react-native'
-import { signInWithEmailAndPassword } from 'firebase/auth';
 
-import { firebaseAppAuth } from '../../firebase';
+import { FirebaseService } from '../../services/firebase';
 
 import { styles } from './styles'
 
@@ -24,8 +23,10 @@ export function SignInScreen({ navigation }) {
     } else {
       try {
         setIsLoading(true);
-        await signInWithEmailAndPassword(firebaseAppAuth, email, password)
-      } finally {
+        await FirebaseService.signIn(email, password)
+        setIsLoading(false);
+      } catch (e) {
+        console.error(e)
         setIsLoading(false);
       }
     }
