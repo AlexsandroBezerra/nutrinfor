@@ -3,7 +3,9 @@ export function formatValue(value: number, suffix?: string) {
     return '-'
   }
 
-  let result = String(Intl.NumberFormat('pt-BR').format(value))
+  let result = String(Intl.NumberFormat('pt-BR', {
+    maximumFractionDigits: 4
+  }).format(value))
 
   if (suffix) {
     result = result.concat(' ', suffix)

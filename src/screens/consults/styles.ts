@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: '700',
     fontSize: 20,
-    marginBottom: 24
+    marginVertical: 24
   },
 
   itemContainer: {

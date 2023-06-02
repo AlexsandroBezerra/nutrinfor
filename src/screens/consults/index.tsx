@@ -1,12 +1,14 @@
-import { useState } from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { FlatList, ScrollView, Text, View } from 'react-native';
-import DropdownSelect from 'react-native-input-select';
+import { useState } from 'react'
+import { StatusBar } from 'expo-status-bar'
+import { ScrollView, Text, View } from 'react-native'
+import DropdownSelect from 'react-native-input-select'
 
-import { useFoods } from '../../contexts/foods-context';
-import { formatValue } from '../../utils/format-value';
+import { useFoods } from '../../contexts/foods-context'
+import { formatValue } from '../../utils/format-value'
 
-import { styles } from './styles';
+import { styles } from './styles'
+import { Input } from '../../components/input'
+import { calculateWeight, DEFAULT_WEIGTH } from '../../utils/calculate-weight'
 
 const ITEMS = [
   { label: 'Calorias', propName: 'energyKcal', suffix: 'kcal' },
@@ -34,7 +36,9 @@ const ITEMS = [
 
 export function ConsultsScreen() {
   const foods = useFoods()
-  const [selectedFoodId, setSelectedFoodId] = useState<string>();
+  const [selectedFoodId, setSelectedFoodId] = useState<string>()
+  const [weight, setWeight] = useState(DEFAULT_WEIGTH)
+
   const selectedFood = foods.find(food => food.id === Number(selectedFoodId))
 
   return (
@@ -49,19 +53,38 @@ export function ConsultsScreen() {
           selectedValue={selectedFoodId}
           onValueChange={(id: string) => setSelectedFoodId(id)}
           primaryColor="#3740FE"
-          labelStyle={{ fontSize: 15, fontWeight: '500' }}
+          labelStyle={{ fontSize: 16, fontWeight: '700' }}
           checkboxStyle={{ borderRadius: 30 }}
           isSearchable
         />
 
+        <Input
+          value={String(weight)}
+          onChangeText={text => setWeight(Number(text.replace(/[^0-9]/g, '')))}
+          style={{ width: '100%' }}
+          keyboardType="numeric"
+          spellCheck={false}
+          textContentType="none"
+          autoComplete="off"
+          label="Quantidade (em gramas)"
+          autoCorrect={false}
+          onBlur={() => {
+            if (!weight) {
+              setWeight(DEFAULT_WEIGTH)
+            }
+          }}
+        />
+
         {selectedFood && (
           <View>
-            <Text style={styles.subtitle}>Para cada 100g</Text>
+            <Text style={styles.subtitle}>Para cada {weight}g</Text>
 
             {ITEMS.map(item => (
               <View style={styles.itemContainer} key={item.propName}>
                 <Text style={styles.itemTitle}>{item.label}</Text>
-                <Text style={styles.itemValue}>{formatValue(selectedFood[item.propName], item.suffix)}</Text>
+                <Text style={styles.itemValue}>
+                  {formatValue(calculateWeight(selectedFood[item.propName], weight), item.suffix)}
+                </Text>
               </View>
             ))}
           </View>
@@ -69,5 +92,5 @@ export function ConsultsScreen() {
       </View>
       <StatusBar style="auto" />
     </ScrollView>
-  );
+  )
 }
