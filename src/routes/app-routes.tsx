@@ -4,7 +4,6 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { FoodContextProvider } from '../contexts/foods-context';
 import { ConsultsScreen } from '../screens/consults';
-import { HomeScreen } from '../screens/home';
 import { ProfileScreen } from '../screens/profile';
 
 const Tab = createBottomTabNavigator();
@@ -13,17 +12,7 @@ export default function AppRoutes() {
   return (
     <FoodContextProvider>
       <NavigationContainer>
-        <Tab.Navigator initialRouteName="Refeições">
-          <Tab.Screen
-            name="Home"
-            component={HomeScreen}
-            options={{
-              title: "Refeições",
-              tabBarIcon: ({ focused, color, size }) => {
-                return <Ionicons name={focused ? 'fast-food' : 'fast-food-outline'} color={color} size={size} />
-              }
-            }}
-          />
+        <Tab.Navigator initialRouteName="Consults">
           <Tab.Screen
             name="Consults"
             component={ConsultsScreen}
