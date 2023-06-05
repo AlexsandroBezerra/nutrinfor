@@ -23,15 +23,18 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    borderBottomColor: '#333333',
-    borderBottomWidth: 1,
-    paddingBottom: 8,
-    marginBottom: 8,
-    paddingHorizontal: 8
+    borderColor: '#897A5F',
+    borderWidth: 3,
+    borderRadius: 5,
+    padding: 7,
+    margin: 5,
+    backgroundColor: '#E7E4DF'
   },
 
   itemTitle: {
-    fontSize: 16
+    fontSize: 15,
+    fontWeight: '600',
+    color: '#293845'
   },
 
   itemValue: {

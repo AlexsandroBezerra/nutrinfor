@@ -2,7 +2,7 @@ import { useState } from 'react';
 import {
   View,
   Text,
-  Button,
+  TouchableOpacity,
   Alert,
   TextInput,
   ActivityIndicator
@@ -54,7 +54,7 @@ export function SignInScreen({ navigation }) {
 
       <TextInput
         style={styles.textInput}
-        placeholder="Password"
+        placeholder="Senha"
         value={password}
         onChangeText={(text) => setPassword(text)}
         secureTextEntry={true}
@@ -64,11 +64,15 @@ export function SignInScreen({ navigation }) {
         onSubmitEditing={() => signIn()}
       />
 
-      <Button
-        color="#3740FE"
-        title="Logar"
-        onPress={signIn}
-      />
+      <TouchableOpacity style={styles.signIn} 
+      onPress={signIn}>
+          <Text style={{color: 'white', 
+          fontFamily: "sans-serif-medium", 
+          fontSize: 18, 
+          fontWeight: 'bold'}}>
+            Logar
+          </Text>
+      </TouchableOpacity>
 
       <Text style={styles.signText}
         onPress={() => navigation.navigate('SignUp')}>

@@ -52,9 +52,10 @@ export function ConsultsScreen() {
           optionLabel="name"
           selectedValue={selectedFoodId}
           onValueChange={(id: string) => setSelectedFoodId(id)}
-          primaryColor="#3740FE"
+          primaryColor="#897A5F"
           labelStyle={{ fontSize: 16, fontWeight: '700' }}
           checkboxStyle={{ borderRadius: 30 }}
+          checkboxLabelStyle={{ color: '#897A5F', fontSize: 16 }}
           isSearchable
         />
 
