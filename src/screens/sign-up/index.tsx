@@ -4,7 +4,7 @@ import {
   View,
   Text,
   TextInput,
-  Button,
+  TouchableOpacity,
   Alert,
   ActivityIndicator
 } from 'react-native'
@@ -75,11 +75,15 @@ export function SignUpScreen({ navigation }) {
         onSubmitEditing={() => signUp()}
       />
 
-      <Button
-        color="#3740FE"
-        title="Cadastro"
-        onPress={signUp}
-      />
+      <TouchableOpacity style={styles.signUp} 
+      onPress={signUp}>
+          <Text style={{color: 'white', 
+          fontFamily: "sans-serif-medium", 
+          fontSize: 18, 
+          fontWeight: 'bold'}}>
+            Cadastro
+          </Text>
+      </TouchableOpacity>
 
       <Text style={styles.signText}
         onPress={() => navigation.navigate('Login')}>

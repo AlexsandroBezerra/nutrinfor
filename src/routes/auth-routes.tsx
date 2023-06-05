@@ -18,8 +18,12 @@ export default function AuthRoutes() {
           headerTitleStyle: { fontWeight: "bold" }
         }}
       >
-        <Stack.Screen name="SignIn" component={SignInScreen} options={{ title: "Nutrinfor" }} />
-        <Stack.Screen name="SignUp" component={SignUpScreen} options={{ title: "Cadastro" }} />
+        <Stack.Screen name="SignIn" component={SignInScreen} options={{ title: "Nutrinfor", headerStyle: {
+            backgroundColor: '#897a5f',
+          }}} />
+        <Stack.Screen name="SignUp" component={SignUpScreen} options={{ title: "Cadastro", headerStyle: {
+            backgroundColor: '#897a5f',
+          }}} />
       </Stack.Navigator>
     </NavigationContainer>
   );
