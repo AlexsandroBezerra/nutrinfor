@@ -11,12 +11,7 @@ export const styles = StyleSheet.create({
   },
 
   textInput: {
-    width: '100%',
-    marginBottom: 15,
-    borderWidth: 1,
-    borderColor: '#C5CED6', 
-    padding: 7,
-    borderRadius: 3,
+    marginBottom: 16,
   },
 
   signUp: {
@@ -30,12 +25,20 @@ export const styles = StyleSheet.create({
     borderRadius: 5,
   },
 
-  signText: {
+  signInText: {
     color: 'black',
-    marginTop: 25,
+    marginTop: 32,
+    textAlign: 'center',
+    fontSize: 14,
+  },
+
+  signInLink: {
+    color: 'black',
     textAlign: 'center',
     fontWeight: '500',
-    fontSize: 14
+    fontSize: 16,
+    marginTop: 4,
+    textDecorationLine: 'underline'
   },
 
   loadingContainer: {

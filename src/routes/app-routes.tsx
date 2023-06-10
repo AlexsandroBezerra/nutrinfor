@@ -18,6 +18,11 @@ export default function AppRoutes() {
             component={ConsultsScreen}
             options={{
               title: "Consultas",
+              tabBarActiveTintColor: '#897A5F',
+              headerTintColor: '#FFFFFF',
+              headerStyle: {
+                backgroundColor: '#897A5F',
+              },
               tabBarIcon: ({ focused, color, size }) => {
                 return <Ionicons name={focused ? 'search' : 'search-outline'} color={color} size={size} />
               }
@@ -28,6 +33,11 @@ export default function AppRoutes() {
             component={ProfileScreen}
             options={{
               title: "Perfil",
+              tabBarActiveTintColor: '#897A5F',
+              headerTintColor: '#FFFFFF',
+              headerStyle: {
+                backgroundColor: '#897A5F',
+              },
               tabBarIcon: ({ focused, color, size }) => {
                 return <Ionicons name={focused ? 'person' : 'person-outline'} color={color} size={size} />
               }

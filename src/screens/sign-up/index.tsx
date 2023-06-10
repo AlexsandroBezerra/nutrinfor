@@ -1,22 +1,24 @@
-import { useState } from 'react'
-import { updateProfile } from 'firebase/auth'
+import { useRef, useState } from 'react'
 import {
   View,
   Text,
-  TextInput,
-  TouchableOpacity,
   Alert,
   ActivityIndicator
 } from 'react-native'
 
 import { styles } from './styles'
 import { FirebaseService } from '../../services/firebase'
+import { StatusBar } from 'expo-status-bar'
+import { Input } from '../../components/input'
+import { RectButton, TextInput } from 'react-native-gesture-handler'
 
 export function SignUpScreen({ navigation }) {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const emailInputRef = useRef<TextInput>()
+  const passwordInputRef = useRef<TextInput>()
 
   async function signUp() {
     if (email === '' && password === '') {
@@ -44,16 +46,19 @@ export function SignUpScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <TextInput
+      <Input
         style={styles.textInput}
         placeholder="Nome Completo"
         value={name}
         onChangeText={(text) => setName(text)}
         textContentType='name'
         returnKeyType='next'
+        onSubmitEditing={() => {
+          emailInputRef?.current.focus()
+        }}
       />
 
-      <TextInput
+      <Input
         style={styles.textInput}
         placeholder="Email"
         value={email}
@@ -61,9 +66,13 @@ export function SignUpScreen({ navigation }) {
         keyboardType='email-address'
         textContentType='emailAddress'
         returnKeyType='next'
+        ref={emailInputRef}
+        onSubmitEditing={() => {
+          passwordInputRef?.current.focus()
+        }}
       />
 
-      <TextInput
+      <Input
         style={styles.textInput}
         placeholder="Password"
         value={password}
@@ -73,22 +82,32 @@ export function SignUpScreen({ navigation }) {
         returnKeyType='send'
         enablesReturnKeyAutomatically
         onSubmitEditing={() => signUp()}
+        ref={passwordInputRef}
       />
 
-      <TouchableOpacity style={styles.signUp} 
-      onPress={signUp}>
-          <Text style={{color: 'white', 
-          fontFamily: "sans-serif-medium", 
-          fontSize: 18, 
-          fontWeight: 'bold'}}>
-            Cadastro
-          </Text>
-      </TouchableOpacity>
+      <RectButton
+        style={styles.signUp}
+        onPress={signUp}
+      >
+        <Text style={{
+          color: 'white',
+          fontFamily: "sans-serif-medium",
+          fontSize: 18,
+          fontWeight: 'bold'
+        }}>
+          Cadastro
+        </Text>
+      </RectButton>
 
-      <Text style={styles.signText}
-        onPress={() => navigation.navigate('Login')}>
-        Já está cadastrado? Clique aqui para fazer login!
+      <Text style={styles.signInText}>
+        Já está cadastrado?
       </Text>
+      <Text style={styles.signInLink}
+        onPress={() => navigation.navigate('SignIn')}>
+        Clique aqui para fazer login!
+      </Text>
+
+      <StatusBar style='light' />
     </View>
   );
 }

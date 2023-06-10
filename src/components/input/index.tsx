@@ -1,15 +1,15 @@
-import { useState } from 'react';
-import { Text, TextInput, TextInputProps, View } from 'react-native';
+import { forwardRef, useState, LegacyRef } from 'react';
+import { Text, TextInput, TextInputProps, View, ViewStyle, StyleProp } from 'react-native';
 
 import { styles } from './styles';
 
-type InputProps = TextInputProps & { label?: string }
+type InputProps = TextInputProps & { label?: string, containerStyle?: StyleProp<ViewStyle> }
 
-export function Input({ label, ...props }: InputProps) {
+function InputComponent({ label, ...props }: InputProps, ref: LegacyRef<TextInput>) {
   const [isFocused, setFocus] = useState(false);
 
   return (
-    <View>
+    <View style={props.containerStyle}>
       {label && <Text style={styles.labelText}>{label}</Text>}
 
       <TextInput
@@ -27,8 +27,10 @@ export function Input({ label, ...props }: InputProps) {
           setFocus(false)
           props.onBlur && props.onBlur(event)
         }}
+        ref={ref}
       />
     </View>
   );
 };
 
+export const Input = forwardRef(InputComponent)

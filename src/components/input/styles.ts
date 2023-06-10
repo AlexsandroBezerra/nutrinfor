@@ -13,9 +13,9 @@ export const styles = StyleSheet.create({
     minHeight: 64,
   },
   inputFocusState: {
-    borderWidth: 2,
+    borderWidth: 1,
     borderStyle: 'solid',
-    borderColor: '#3740FE',
+    borderColor: '#897A5F',
   },
   labelText: {
     marginBottom: 12,

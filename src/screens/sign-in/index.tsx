@@ -1,21 +1,25 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import {
   View,
   Text,
-  TouchableOpacity,
   Alert,
   TextInput,
-  ActivityIndicator
+  ActivityIndicator,
+  Image
 } from 'react-native'
+import { RectButton } from 'react-native-gesture-handler';
 
 import { FirebaseService } from '../../services/firebase';
+import { Input } from '../../components/input';
 
 import { styles } from './styles'
+import { StatusBar } from 'expo-status-bar';
 
 export function SignInScreen({ navigation }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const passwordInputRef = useRef<TextInput>()
 
   async function signIn() {
     if (email === '' && password === '') {
@@ -42,7 +46,19 @@ export function SignInScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <TextInput
+      <Image
+        source={require('../../../assets/icon.png')}
+        style={{
+          height: 120,
+          width: 120,
+          alignSelf: 'center',
+          resizeMode: 'contain',
+          marginBottom: 64,
+          marginTop: -64
+        }}
+      />
+
+      <Input
         style={styles.textInput}
         placeholder="Email"
         value={email}
@@ -50,9 +66,13 @@ export function SignInScreen({ navigation }) {
         keyboardType='email-address'
         textContentType='emailAddress'
         returnKeyType='next'
+        enablesReturnKeyAutomatically
+        onSubmitEditing={() => {
+          passwordInputRef?.current.focus()
+        }}
       />
 
-      <TextInput
+      <Input
         style={styles.textInput}
         placeholder="Senha"
         value={password}
@@ -62,22 +82,32 @@ export function SignInScreen({ navigation }) {
         returnKeyType='send'
         enablesReturnKeyAutomatically
         onSubmitEditing={() => signIn()}
+        ref={passwordInputRef}
       />
 
-      <TouchableOpacity style={styles.signIn} 
-      onPress={signIn}>
-          <Text style={{color: 'white', 
-          fontFamily: "sans-serif-medium", 
-          fontSize: 18, 
-          fontWeight: 'bold'}}>
-            Logar
-          </Text>
-      </TouchableOpacity>
+      <RectButton
+        style={styles.signIn}
+        onPress={signIn}
+      >
+        <Text style={{
+          color: 'white',
+          fontFamily: "sans-serif-medium",
+          fontSize: 18,
+          fontWeight: 'bold',
+        }}>
+          Logar
+        </Text>
+      </RectButton>
 
-      <Text style={styles.signText}
-        onPress={() => navigation.navigate('SignUp')}>
-        Não tem conta? Clique aqui para cadastrar!
+      <Text style={styles.signUpText}>Não tem conta?</Text>
+      <Text
+        style={styles.signUpLink}
+        onPress={() => navigation.navigate('SignUp')}
+      >
+         Clique aqui para cadastrar!
       </Text>
+
+      <StatusBar style='light' />
     </View>
   )
 }

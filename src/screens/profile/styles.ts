@@ -9,6 +9,7 @@ export const styles = StyleSheet.create({
   },
 
   text: {
-    marginBottom: 16
+    marginBottom: 24,
+    fontSize: 20
   }
 });

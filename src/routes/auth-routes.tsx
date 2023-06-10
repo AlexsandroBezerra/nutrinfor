@@ -6,6 +6,8 @@ import { SignUpScreen } from '../screens/sign-up';
 
 const Stack = createNativeStackNavigator();
 
+const HEADER_BACKGROUND_COLOR = '#897A5F';
+
 export default function AuthRoutes() {
   return (
     <NavigationContainer>
@@ -13,17 +15,21 @@ export default function AuthRoutes() {
         initialRouteName="SignIn"
         screenOptions={{
           headerTitleAlign: "center",
-          headerStyle: { backgroundColor: "blue" },
-          headerTintColor: "#fff",
+          headerTintColor: "#FFFFFF",
+          headerStyle: { backgroundColor: HEADER_BACKGROUND_COLOR },
           headerTitleStyle: { fontWeight: "bold" }
         }}
       >
-        <Stack.Screen name="SignIn" component={SignInScreen} options={{ title: "Nutrinfor", headerStyle: {
-            backgroundColor: '#897a5f',
-          }}} />
-        <Stack.Screen name="SignUp" component={SignUpScreen} options={{ title: "Cadastro", headerStyle: {
-            backgroundColor: '#897a5f',
-          }}} />
+        <Stack.Screen
+          name="SignIn"
+          component={SignInScreen}
+          options={{ title: "Nutrinfor" }}
+        />
+        <Stack.Screen
+          name="SignUp"
+          component={SignUpScreen}
+          options={{ title: "Cadastro" }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
