@@ -73,7 +73,6 @@ export function ConsultsScreen() {
 
       ITEMS_KEYS.forEach(key => {
         const value = isNaN(Number(item.food[key.propName])) ? 0 : Number(item.food[key.propName])
-        console.log(key.propName, item.food[key.propName], value)
         result[key.propName] = calculateWeight(value, item.weight)
       })
 
@@ -88,7 +87,6 @@ export function ConsultsScreen() {
       return currentValue
     })
 
-    console.log(listReduced)
     setResult(listReduced)
   }
 
@@ -157,7 +155,7 @@ export function ConsultsScreen() {
         </RectButton>
 
         {result?.energyKcal && (
-          <View>
+          <View style={{ paddingBottom: 64 }}>
             <Text style={styles.subtitle}>Resumo da refeição</Text>
 
             {ITEMS_KEYS.map(item => (

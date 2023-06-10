@@ -18,10 +18,23 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#897A5F"
-      }
+      },
+      "package": "com.alexsandrobezerra.nutrinfor"
     },
     "androidStatusBar": {
       "barStyle": "light-content"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "6504ac4b-f729-4bd2-a96a-4993ffbea43b"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/6504ac4b-f729-4bd2-a96a-4993ffbea43b"
+    },
+    "ios": {}
   }
 }
