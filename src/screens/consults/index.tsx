@@ -52,6 +52,7 @@ export function ConsultsScreen() {
       const foodItem = { food, weight }
       setWeight(DEFAULT_WEIGTH)
       setSelectedFoodId(undefined)
+      setResult(undefined)
       setSelectedFoodList(state => [...state, foodItem])
     }
   }
@@ -60,6 +61,7 @@ export function ConsultsScreen() {
     const newState = [...selectedFoodList]
     newState.splice(index, 1)
     setSelectedFoodList(newState)
+    setResult(undefined)
   }
 
   function calculateResult() {
